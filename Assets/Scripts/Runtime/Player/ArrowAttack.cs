@@ -42,6 +42,7 @@ public class ArrowAttack : MonoBehaviour
         //{
         //    arrows.Add(Instantiate(arrowPrefab, transform.position, transform.rotation));
         //}
+
         //GameObject arrowObj = 
         //Arrow arrowScript = arrowObj.GetComponent<Arrow>();
         //if (arrowScript != null)
