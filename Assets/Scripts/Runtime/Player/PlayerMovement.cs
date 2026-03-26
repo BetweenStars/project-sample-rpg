@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         float newX = transform.position.x + (horizontalInput * moveSpeed * Time.deltaTime);
 
