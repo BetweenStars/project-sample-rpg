@@ -6,16 +6,16 @@ using System.Collections.Generic;
 public class ArrowAttack : MonoBehaviour
 {
     [Header("Attack Settings")]
-    // °ø°Ý ÄðÅ¸ÀÓ
-    [SerializeField] 
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½
+    [SerializeField]
     private float attackInterval = 2.0f;
-    // µ¥¹ÌÁö
-    [SerializeField] 
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    [SerializeField]
     private float attackDamage = 1.0f;
-    // Åõ»çÃ¼ ¸ðµ¨
+    // ï¿½ï¿½ï¿½ï¿½Ã¼ ï¿½ï¿½
     [SerializeField]
     private GameObject arrowPrefab;
-    
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,7 +25,7 @@ public class ArrowAttack : MonoBehaviour
 
     public IEnumerator Attack()
     {
-        while(true)
+        while (true)
         {
             GameObject arrowObj = Instantiate(arrowPrefab, transform.position, transform.rotation);
             Arrow arrowScript = arrowObj.GetComponent<Arrow>();
@@ -36,5 +36,11 @@ public class ArrowAttack : MonoBehaviour
 
             yield return new WaitForSeconds(attackInterval);
         }
+    }
+
+    public int GetCount() { return 0; }
+    public void SetCount(int count)
+    {
+
     }
 }

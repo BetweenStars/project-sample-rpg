@@ -256,26 +256,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!1 &758126784 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5353384021758435643, guid: 4c5258ae13dd34f5d9f9680b9d619bc1, type: 3}
-  m_PrefabInstance: {fileID: 3141537167206209046}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &758126785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 758126784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10ec19e8957491f438de7f95202175f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ArrowAttack
-  attackInterval: 2
-  attackDamage: 10
-  arrowPrefab: {fileID: 3427107726822528509, guid: 6969d80f43e51f249b3ee04ec1672fdf, type: 3}
 --- !u!1 &897300067
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,16 +517,8 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 230475287203119560, guid: 4c5258ae13dd34f5d9f9680b9d619bc1, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 5353384021758435643, guid: 4c5258ae13dd34f5d9f9680b9d619bc1, type: 3}
       propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5353384021758435643, guid: 4c5258ae13dd34f5d9f9680b9d619bc1, type: 3}
-      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8000092290357608861, guid: 4c5258ae13dd34f5d9f9680b9d619bc1, type: 3}
@@ -592,10 +564,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5353384021758435643, guid: 4c5258ae13dd34f5d9f9680b9d619bc1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 758126785}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c5258ae13dd34f5d9f9680b9d619bc1, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

@@ -44,11 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24f48abd4cbd44f58aadfdb9d39be3ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapManager
-  groundPrefab: {fileID: 9039783443893062503, guid: f53e38c21e25a4125a9656572609007d, type: 3}
-  obstaclePrefabs:
-  - {fileID: 2232119468979435032, guid: a82408bff7f5343c095031e477c3de77, type: 3}
-  - {fileID: 20601080460059935, guid: 4f5506e4c3ed0429996c89d8af6892d6, type: 3}
-  - {fileID: 5826839112311844212, guid: e30259e25d416474aacf0a4c58411427, type: 3}
+  groundPrefabs:
+  - {fileID: 9039783443893062503, guid: 4e4d340d7d239407eace654a8e1bad9d, type: 3}
+  - {fileID: 9039783443893062503, guid: 77a13182b32084d1bbe0a28d110f8a7b, type: 3}
+  - {fileID: 9039783443893062503, guid: 3e7b333b1b0004abc8b1e83746df8388, type: 3}
   speed: 5
   poolSize: 10
   groundSize: 10
