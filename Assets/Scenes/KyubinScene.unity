@@ -391,6 +391,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5338617195152910684, guid: 009fd4488bdf644b0be0dc7af290dff7, type: 3}
+      propertyPath: groundPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5338617195152910684, guid: 009fd4488bdf644b0be0dc7af290dff7, type: 3}
+      propertyPath: 'groundPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 9039783443893062503, guid: 4e4d340d7d239407eace654a8e1bad9d, type: 3}
+    - target: {fileID: 5338617195152910684, guid: 009fd4488bdf644b0be0dc7af290dff7, type: 3}
+      propertyPath: 'groundPrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 9039783443893062503, guid: 77a13182b32084d1bbe0a28d110f8a7b, type: 3}
+    - target: {fileID: 5338617195152910684, guid: 009fd4488bdf644b0be0dc7af290dff7, type: 3}
+      propertyPath: 'groundPrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 9039783443893062503, guid: 3e7b333b1b0004abc8b1e83746df8388, type: 3}
     - target: {fileID: 6985642622771901489, guid: 009fd4488bdf644b0be0dc7af290dff7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

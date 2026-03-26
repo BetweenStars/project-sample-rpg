@@ -11,10 +11,7 @@ public class MapManager : MonoBehaviour
     public static MapManager Instance { get; private set; }
 
     [Header("Map Prefabs")]
-    public GameObject groundPrefab;
-    public GameObject[] obstaclePrefabs;
-    public Dictionary<ObstacleKey, GameObject> obstacleDictionary = new Dictionary<ObstacleKey, GameObject>();
-
+    public GameObject[] groundPrefabs;
     private Queue<GameObject> groundPool = new Queue<GameObject>();
 
     [Header("Map Settings")]
@@ -34,48 +31,53 @@ public class MapManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    void Start()
+    private void Start()
     {
-        for (int i = 0; i < poolSize; i++)
-        {
-            SpawnGround(i);
-        }
+        InitGround();
     }
 
-    void Update()
+    private void Update()
     {
         foreach (GameObject ground in groundPool)
         {
-            ground.transform.Translate(Vector3.back * speed * Time.deltaTime);
+            if (ground.activeSelf)
+            {
+                ground.transform.Translate(Vector3.back * speed * Time.deltaTime);
+            }
         }
 
-        if (groundPool.Peek().transform.position.z < -groundSize)
-        {
-            RepositionGround();
-        }
+        RecycleGround();
     }
 
-    private void InitObstacleDictionary()
+    private void InitGround()
     {
-        for (int i = 0; i < obstaclePrefabs.Length; i++)
+        for (int i = 0; i < poolSize; i++)
         {
-            ObstacleKey key = (ObstacleKey)i;
-            obstacleDictionary[key] = obstaclePrefabs[i];
+            SpawnGround();
         }
     }
-
-    private void SpawnGround(int n)
+    private void SpawnGround()
     {
-        GameObject ground = Instantiate(groundPrefab, new Vector3(0, 0, n * groundSize), Quaternion.identity);
+        GameObject ground = Instantiate(groundPrefabs[Random.Range(0, groundPrefabs.Length)]);
+        ground.transform.position = new Vector3(0, 0, groundSize * groundPool.Count);
         ground.SetActive(true);
         groundPool.Enqueue(ground);
     }
-
-    private void RepositionGround()
+    private void RecycleGround()
     {
-        GameObject oldGround = groundPool.Dequeue();
-            float newZ = (poolSize - 1) * groundSize + groundPool.Peek().transform.position.z;
-            oldGround.transform.position = new Vector3(0, 0, newZ);
-            groundPool.Enqueue(oldGround);
+        foreach (GameObject ground in groundPool)
+        {
+            if (ground.transform.position.z < -groundSize)
+            {
+                float newZ = (groundPool.Count - 1) * groundSize;
+                ground.transform.position = new Vector3(0, 0, newZ);
+
+                if(ground.GetComponent<Ground>() != null)
+                {
+                    Debug.Log("recycle ground and init choices");
+                    ground.GetComponent<Ground>().InitChoices();
+                }
+            }
+        }
     }
 }
