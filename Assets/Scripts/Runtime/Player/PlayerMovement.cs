@@ -18,9 +18,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        float newX = transform.position.x + (horizontalInput * moveSpeed * Time.fixedDeltaTime);
+        float newX = transform.position.x + (horizontalInput * moveSpeed * Time.deltaTime);
 
         newX = Mathf.Clamp(newX, -xClampRange, xClampRange);
 
