@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class EnemyHP : MonoBehaviour
 {
-    [SerializeField] private float maxHp = 10f;
-    private float currentHp;
+    [SerializeField] 
+    private float maxHp = 10f;
+    public float currentHp { get; private set; }
 
     private void Start()
     {
