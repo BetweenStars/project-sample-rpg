@@ -27,7 +27,13 @@ public class Choice : MonoBehaviour
         {
             Debug.Log("Player has made a choice!");
             isChosen=true;
-            // Implement choice logic here
+            
+            if(collision.gameObject.TryGetComponent<ArrowAttack>(out ArrowAttack player))
+            {
+                int currentValue = player.GetCount();
+                int newValue = ApplyChoice(currentValue);
+                player.SetCount(newValue);
+            }
         }
     }
 
@@ -58,6 +64,29 @@ public class Choice : MonoBehaviour
                 choiceText.text = "÷" + choiceValue.ToString();
                 break;
         }
+    }
+
+    public int ApplyChoice(int currentValue)
+    {
+        int appliedValue = currentValue;
+        switch(choiceType)
+        {
+            case ChoiceType.Plue:
+                appliedValue+=choiceValue;break;
+            case ChoiceType.Minus:
+                appliedValue-=choiceValue;break;
+            case ChoiceType.Multiply:
+                appliedValue*=choiceValue;break;
+            case ChoiceType.Divide:
+                appliedValue/=choiceValue;break;
+            default:break;
+        }
+
+        if(appliedValue<1)
+        {
+            appliedValue=1;
+        }
+        return appliedValue;
     }
 
     public bool CheckChosen()
