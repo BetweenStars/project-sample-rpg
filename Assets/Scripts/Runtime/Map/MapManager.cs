@@ -74,7 +74,6 @@ public class MapManager : MonoBehaviour
 
                 if(ground.GetComponent<Ground>() != null)
                 {
-                    Debug.Log("recycle ground and init choices");
                     ground.GetComponent<Ground>().InitChoices();
                 }
             }

@@ -54,11 +54,14 @@ public class ArrowAttack : MonoBehaviour
     public int GetCount() { return arrowCount; }
     public void SetCount(int count)
     {
-        arrowCount += count;
+        arrowCount = count;
+        Debug.Log("Arrow count updated: " + arrowCount);
 
+        /*
         if(arrowCount >= MaxArrowCount)
         {
             arrowCount /= MaxArrowCount;
         }
+        */
     }
 }

@@ -26,13 +26,18 @@ public class Choice : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             isChosen=true;
-            
-            if(other.gameObject.TryGetComponent<ArrowAttack>(out ArrowAttack player))
+
+            if (other.gameObject.GetComponentInParent<ArrowAttack>() == null)
+            {
+                Debug.Log("Can't find ArrowAttack component in parent of the player.");
+            }
+            else
             {
                 Debug.Log("Player has chosen: " + choiceType.ToString() + " " + choiceValue);
-                int currentValue = player.GetCount();
+                int currentValue = other.gameObject.GetComponentInParent<ArrowAttack>().GetCount();
                 int newValue = ApplyChoice(currentValue);
-                player.SetCount(newValue);
+                other.gameObject.GetComponentInParent<ArrowAttack>().SetCount(newValue);
+                Debug.Log("Player's new arrow count: " + newValue);
             }
 
             gameObject.SetActive(false);

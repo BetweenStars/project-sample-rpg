@@ -3,16 +3,22 @@ using UnityEngine.UI;
 
 public class ArrowCountText : MonoBehaviour
 {
-    [SerializeField]private Text countText;
+    private Text countText;
     private ArrowAttack player;
+
+    void Start()
+    {
+        countText = GetComponent<Text>();
+
+    }
 
     void Update()
     {
         if (player == null)
         {
-            if(GameObject.FindAnyObjectByType<ArrowAttack>()!=null)
+            if(GameObject.FindGameObjectWithTag("Player") != null)
             {
-                player = GameObject.FindAnyObjectByType<ArrowAttack>();
+                player = GameObject.FindGameObjectWithTag("Player").GetComponentInParent<ArrowAttack>();
             }
         }
 
