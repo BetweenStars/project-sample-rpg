@@ -21,19 +21,21 @@ public class Choice : MonoBehaviour
         InitChoice();
     }
     
-    public void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player has made a choice!");
             isChosen=true;
             
-            if(collision.gameObject.TryGetComponent<ArrowAttack>(out ArrowAttack player))
+            if(other.gameObject.TryGetComponent<ArrowAttack>(out ArrowAttack player))
             {
+                Debug.Log("Player has chosen: " + choiceType.ToString() + " " + choiceValue);
                 int currentValue = player.GetCount();
                 int newValue = ApplyChoice(currentValue);
                 player.SetCount(newValue);
             }
+
+            gameObject.SetActive(false);
         }
     }
 

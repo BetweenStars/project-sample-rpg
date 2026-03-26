@@ -14,13 +14,14 @@ public class Ground : MonoBehaviour
         if (choice1.CheckChosen() || choice2.CheckChosen())
         {
             canChoose = false;
-            Debug.Log("Both choices have been made!");
             // Implement logic for when both choices are made
         }
     }
 
     public void InitChoices()
     {
+        choice1.gameObject.SetActive(true);
+        choice2.gameObject.SetActive(true);
         choice1.InitChoice();
         choice2.InitChoice();
         canChoose = true;
