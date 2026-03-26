@@ -13,9 +13,47 @@ public class ArrowAttack : MonoBehaviour
     [SerializeField]
     private GameObject arrowPrefab;
 
-    private int arrowCount;
+
+    public int arrowCount = 4;
+
     [SerializeField]
     private int MaxArrowCount = 10;
+
+    private Dictionary<int, Vector3[]> formationData = new Dictionary<int, Vector3[]>()
+    {
+        { 1, new Vector3[] { new Vector3(0, 0, 1) } },
+        { 2, new Vector3[] { 
+            new Vector3(-0.3f, 0, 1),       new Vector3(0.3f, 0, 1) } },
+        { 3, new Vector3[] { 
+            new Vector3(-0.5f, 0, 1),       new Vector3(0, 0, 1),       new Vector3(0.5f, 0, 1) } },
+        { 4, new Vector3[] {
+            new Vector3(-0.3f, 0, 2.3f),    new Vector3(0.3f, 0, 2.3f), // 앞줄
+            new Vector3(-0.3f, 0, 1f),      new Vector3(0.3f, 0, 1f) // 뒷줄
+        } },
+        { 5, new Vector3[] {
+            new Vector3(-0.3f, 0, 2.3f),    new Vector3(0.3f, 0, 2.3f), // 앞줄
+            new Vector3(-0.5f, 0, 1f),      new Vector3(0, 0, 1),       new Vector3(0.5f, 0, 1) // 뒷줄
+        } },
+        { 6, new Vector3[] {
+            new Vector3(-0.5f, 0, 2.3f),    new Vector3(0, 0, 2.3f),    new Vector3(0.5f, 0, 2.3f), // 앞줄
+            new Vector3(-0.5f, 0, 1f),      new Vector3(0, 0, 1f),      new Vector3(0.5f, 0, 1f) // 뒷줄
+        } },
+        { 7, new Vector3[] {
+                                            new Vector3(0, 0, 3.6f),
+            new Vector3(-0.5f, 0, 2.3f),    new Vector3(0, 0, 2.3f),    new Vector3(0.5f, 0, 2.3f), // 앞줄
+            new Vector3(-0.5f, 0, 1),       new Vector3(0, 0, 1),       new Vector3(0.5f, 0, 1) // 뒷줄
+        } },
+        { 8, new Vector3[] {
+            new Vector3(-0.3f, 0, 3.6f),                                new Vector3(0.3f, 0, 3.6f), // 앞줄
+            new Vector3(-0.5f, 0, 2.3f),    new Vector3(0, 0, 2.3f),    new Vector3(0.5f, 0, 2.3f),
+            new Vector3(-0.5f, 0, 1f),      new Vector3(0, 0, 1f),      new Vector3(0.5f, 0, 1f) // 뒷줄
+        } },
+        { 9, new Vector3[] {
+            new Vector3(-0.5f, 0, 3.6f),    new Vector3(0, 0, 3.6f),    new Vector3(0.5f, 0, 3.6f), // 앞줄
+            new Vector3(-0.5f, 0, 2.3f),    new Vector3(0, 0, 2.3f),    new Vector3(0.5f, 0, 2.3f),
+            new Vector3(-0.5f, 0, 1f),      new Vector3(0, 0, 1f),      new Vector3(0.5f, 0, 1f) // 뒷줄
+        } },
+    };
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -36,29 +74,29 @@ public class ArrowAttack : MonoBehaviour
 
     private void CreateArrows()
     {
-        //List<GameObject> arrows = new List<GameObject>();
+        List<GameObject> arrows = new List<GameObject>();
 
-        //for(int i = 0; i < arrowCount; i++)
-        //{
-        //    arrows.Add(Instantiate(arrowPrefab, transform.position, transform.rotation));
-        //}
+        for (int i = 0; i < arrowCount % MaxArrowCount; i++)
+        {
+            GameObject arrowObj = Instantiate(arrowPrefab, transform.position + formationData[arrowCount][i], transform.rotation);
+            Arrow arrowScript = arrowObj.GetComponent<Arrow>();
+            if (arrowScript != null)
+            {
+                arrowScript.Setup(attackDamage);
+            }
 
-        //GameObject arrowObj = 
-        //Arrow arrowScript = arrowObj.GetComponent<Arrow>();
-        //if (arrowScript != null)
-        //{
-        //    arrowScript.Setup(attackDamage);
-        //}
+            arrows.Add(arrowObj);
+        }
     }
 
     public int GetCount() { return arrowCount; }
     public void SetCount(int count)
     {
-        arrowCount += count;
+        arrowCount = count;
 
         if(arrowCount >= MaxArrowCount)
-        {
-            arrowCount /= MaxArrowCount;
+        { 
+            attackDamage = arrowCount/MaxArrowCount;
         }
     }
 }
