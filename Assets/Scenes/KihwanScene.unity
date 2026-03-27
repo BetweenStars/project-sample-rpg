@@ -565,6 +565,14 @@ PrefabInstance:
       propertyPath: arrowCount
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 9114729853213569815, guid: 4c5258ae13dd34f5d9f9680b9d619bc1, type: 3}
+      propertyPath: MaxArrowCount
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9114729853213569815, guid: 4c5258ae13dd34f5d9f9680b9d619bc1, type: 3}
+      propertyPath: attackInterval
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

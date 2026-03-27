@@ -24,7 +24,7 @@ public class ArrowCountText : MonoBehaviour
 
         if (player != null)
         {
-            countText.text = "Arrow Count: " + player.GetCount().ToString();
+            countText.text = "Arrow Count: " + player.GetArrowStack().ToString();
         }
     }
 }

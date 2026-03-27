@@ -9,50 +9,67 @@ public class ArrowAttack : MonoBehaviour
     [SerializeField]
     private float attackInterval = 2.0f;
     [SerializeField]
-    private float attackDamage = 1.0f;
-    [SerializeField]
     private GameObject arrowPrefab;
 
-
-    public int arrowCount = 4;
-
     [SerializeField]
-    private int MaxArrowCount = 10;
+    private int MaxArrowCount = 9;
+    private int MaxArrowStack = 99;
+    // 전체 Arrow의 점수
+    private int arrowStack = 0;
+    // 발사하는 화살 개수
+    private int arrowCount = 1;
+    // 화살 데미지
+    private int arrowDamage = 1;
+    
 
-    private Dictionary<int, Vector3[]> formationData = new Dictionary<int, Vector3[]>()
+    private List<Vector3[]> formationData = new List<Vector3[]>()
     {
-        { 1, new Vector3[] { new Vector3(0, 0, 1) } },
-        { 2, new Vector3[] { 
-            new Vector3(-0.3f, 0, 1),       new Vector3(0.3f, 0, 1) } },
-        { 3, new Vector3[] { 
-            new Vector3(-0.5f, 0, 1),       new Vector3(0, 0, 1),       new Vector3(0.5f, 0, 1) } },
-        { 4, new Vector3[] {
-            new Vector3(-0.3f, 0, 2.3f),    new Vector3(0.3f, 0, 2.3f), // 앞줄
-            new Vector3(-0.3f, 0, 1f),      new Vector3(0.3f, 0, 1f) // 뒷줄
-        } },
-        { 5, new Vector3[] {
-            new Vector3(-0.3f, 0, 2.3f),    new Vector3(0.3f, 0, 2.3f), // 앞줄
-            new Vector3(-0.5f, 0, 1f),      new Vector3(0, 0, 1),       new Vector3(0.5f, 0, 1) // 뒷줄
-        } },
-        { 6, new Vector3[] {
-            new Vector3(-0.5f, 0, 2.3f),    new Vector3(0, 0, 2.3f),    new Vector3(0.5f, 0, 2.3f), // 앞줄
-            new Vector3(-0.5f, 0, 1f),      new Vector3(0, 0, 1f),      new Vector3(0.5f, 0, 1f) // 뒷줄
-        } },
-        { 7, new Vector3[] {
+        // 0 (Dummy)
+        new Vector3[] { },
+        // 1
+        new Vector3[] { new Vector3(0, 0, 1)
+        },
+        // 2
+        new Vector3[] { 
+            new Vector3(-0.3f, 0, 1),       new Vector3(0.3f, 0, 1) 
+        },
+        // 3
+        new Vector3[] { 
+            new Vector3(-0.5f, 0, 1),       new Vector3(0, 0, 1),       new Vector3(0.5f, 0, 1) 
+        },
+        // 4
+        new Vector3[] {
+            new Vector3(-0.3f, 0, 2.3f),    new Vector3(0.3f, 0, 2.3f),
+            new Vector3(-0.3f, 0, 1f),      new Vector3(0.3f, 0, 1f) 
+        },
+        // 5
+        new Vector3[] {
+            new Vector3(-0.3f, 0, 2.3f),    new Vector3(0.3f, 0, 2.3f), 
+            new Vector3(-0.5f, 0, 1f),      new Vector3(0, 0, 1),       new Vector3(0.5f, 0, 1) 
+        },
+        // 6
+        new Vector3[] {
+            new Vector3(-0.5f, 0, 2.3f),    new Vector3(0, 0, 2.3f),    new Vector3(0.5f, 0, 2.3f), 
+            new Vector3(-0.5f, 0, 1f),      new Vector3(0, 0, 1f),      new Vector3(0.5f, 0, 1f) 
+        },
+        // 7
+        new Vector3[] {
                                             new Vector3(0, 0, 3.6f),
-            new Vector3(-0.5f, 0, 2.3f),    new Vector3(0, 0, 2.3f),    new Vector3(0.5f, 0, 2.3f), // 앞줄
-            new Vector3(-0.5f, 0, 1),       new Vector3(0, 0, 1),       new Vector3(0.5f, 0, 1) // 뒷줄
-        } },
-        { 8, new Vector3[] {
-            new Vector3(-0.3f, 0, 3.6f),                                new Vector3(0.3f, 0, 3.6f), // 앞줄
+            new Vector3(-0.5f, 0, 2.3f),    new Vector3(0, 0, 2.3f),    new Vector3(0.5f, 0, 2.3f), 
+            new Vector3(-0.5f, 0, 1),       new Vector3(0, 0, 1),       new Vector3(0.5f, 0, 1) 
+        },
+        // 8
+        new Vector3[] {
+            new Vector3(-0.3f, 0, 3.6f),                                new Vector3(0.3f, 0, 3.6f), 
             new Vector3(-0.5f, 0, 2.3f),    new Vector3(0, 0, 2.3f),    new Vector3(0.5f, 0, 2.3f),
-            new Vector3(-0.5f, 0, 1f),      new Vector3(0, 0, 1f),      new Vector3(0.5f, 0, 1f) // 뒷줄
-        } },
-        { 9, new Vector3[] {
-            new Vector3(-0.5f, 0, 3.6f),    new Vector3(0, 0, 3.6f),    new Vector3(0.5f, 0, 3.6f), // 앞줄
+            new Vector3(-0.5f, 0, 1f),      new Vector3(0, 0, 1f),      new Vector3(0.5f, 0, 1f) 
+        },
+        // 9 
+        new Vector3[] {
+            new Vector3(-0.5f, 0, 3.6f),    new Vector3(0, 0, 3.6f),    new Vector3(0.5f, 0, 3.6f), 
             new Vector3(-0.5f, 0, 2.3f),    new Vector3(0, 0, 2.3f),    new Vector3(0.5f, 0, 2.3f),
-            new Vector3(-0.5f, 0, 1f),      new Vector3(0, 0, 1f),      new Vector3(0.5f, 0, 1f) // 뒷줄
-        } },
+            new Vector3(-0.5f, 0, 1f),      new Vector3(0, 0, 1f),      new Vector3(0.5f, 0, 1f) 
+        },
     };
 
 
@@ -66,8 +83,10 @@ public class ArrowAttack : MonoBehaviour
     {
         while (true)
         {
+            Debug.Log("ArrowStack : " + arrowStack + " ArrowCount : " + arrowCount + " ArrowDamage : " + arrowDamage);
             CreateArrows();
-
+            SetArrowStack(arrowStack + 1);
+            
             yield return new WaitForSeconds(attackInterval);
         }
     }
@@ -76,29 +95,25 @@ public class ArrowAttack : MonoBehaviour
     {
         List<GameObject> arrows = new List<GameObject>();
 
-        for (int i = 0; i < arrowCount % MaxArrowCount; i++)
+        for (int i = 0; i < arrowCount; i++)
         {
             GameObject arrowObj = Instantiate(arrowPrefab, transform.position + formationData[arrowCount][i], transform.rotation);
             Arrow arrowScript = arrowObj.GetComponent<Arrow>();
             if (arrowScript != null)
             {
-                arrowScript.Setup(attackDamage);
+                arrowScript.Setup(arrowDamage);
             }
 
             arrows.Add(arrowObj);
         }
     }
 
-    public int GetCount() { return arrowCount; }
-    public void SetCount(int count)
+    public int GetArrowStack() { return arrowStack; }
+    public void SetArrowStack(int stack)
     {
-        arrowCount = count;
+        arrowStack = Mathf.Clamp(stack, 0, MaxArrowStack); 
 
-        /*
-        if(arrowCount >= MaxArrowCount)
-        { 
-            attackDamage = arrowCount/MaxArrowCount;
-        }
-        */
+        arrowCount = (arrowStack % MaxArrowCount) + 1;
+        arrowDamage = arrowStack / MaxArrowCount + 1;
     }
 }
