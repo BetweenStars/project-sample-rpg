@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapManager
   groundPrefabs:
-  - {fileID: 9039783443893062503, guid: 4e4d340d7d239407eace654a8e1bad9d, type: 3}
-  - {fileID: 9039783443893062503, guid: 77a13182b32084d1bbe0a28d110f8a7b, type: 3}
-  - {fileID: 9039783443893062503, guid: 3e7b333b1b0004abc8b1e83746df8388, type: 3}
+  - {fileID: 6214900340165069179, guid: e730b8e6849d44642bbddeeeeef2d6f9, type: 3}
+  - {fileID: 6214900340165069179, guid: 802024cbcc6b84618816f7b2735193ab, type: 3}
+  - {fileID: 6214900340165069179, guid: 54fb78a10379e4b38aa0572891798112, type: 3}
   speed: 5
   poolSize: 10
   groundSize: 10

@@ -11,6 +11,8 @@ public enum ChoiceType
 
 public class Choice : MonoBehaviour
 {
+    private Ground ground;
+
     private bool isChosen=false;
     [SerializeField] private Text choiceText;
     public ChoiceType choiceType;
@@ -18,13 +20,19 @@ public class Choice : MonoBehaviour
 
     private void Start()
     {
+        ground = GetComponentInParent<Ground>();
+        
         InitChoice();
     }
     
     public void OnTriggerEnter(Collider other)
     {
+        if(ground.canChoose==false)return;
+
         if (other.gameObject.CompareTag("Player"))
         {
+            ground.choosedChoice=this;
+            ground.canChoose=false;
             isChosen=true;
 
             if (other.gameObject.GetComponentInParent<ArrowAttack>() == null)
@@ -46,14 +54,16 @@ public class Choice : MonoBehaviour
 
     public void InitChoice()
     {
+        isChosen=false;
+
         choiceType = (ChoiceType)UnityEngine.Random.Range(0,4);
         if(choiceType==ChoiceType.Plue || choiceType==ChoiceType.Minus)
         {
-            choiceValue = UnityEngine.Random.Range(1, 100);
+            choiceValue = UnityEngine.Random.Range(1, 11);
         }
         else
         {
-            choiceValue = UnityEngine.Random.Range(2, 10);
+            choiceValue = UnityEngine.Random.Range(2, 4);
         }
 
         switch(choiceType)
@@ -94,10 +104,5 @@ public class Choice : MonoBehaviour
             appliedValue=1;
         }
         return appliedValue;
-    }
-
-    public bool CheckChosen()
-    {
-        return isChosen;
     }
 }

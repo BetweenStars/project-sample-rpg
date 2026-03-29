@@ -72,9 +72,9 @@ public class MapManager : MonoBehaviour
                 float newZ = (groundPool.Count - 1) * groundSize;
                 ground.transform.position = new Vector3(0, 0, newZ);
 
-                if(ground.GetComponent<Ground>() != null)
+                if(ground.GetComponentInChildren<Ground>() != null)
                 {
-                    ground.GetComponent<Ground>().InitChoices();
+                    ground.GetComponentInChildren<Ground>().InitChoices();
                 }
             }
         }

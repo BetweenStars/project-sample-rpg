@@ -5,17 +5,12 @@ public class Ground : MonoBehaviour
     public Choice choice1;
     public Choice choice2;
 
-    private bool canChoose = true;
+    public bool canChoose = true;
+    public Choice choosedChoice;
 
     private void Update()
     {
-        if(!canChoose)return;
 
-        if (choice1.CheckChosen() || choice2.CheckChosen())
-        {
-            canChoose = false;
-            // Implement logic for when both choices are made
-        }
     }
 
     public void InitChoices()
@@ -25,5 +20,6 @@ public class Ground : MonoBehaviour
         choice1.InitChoice();
         choice2.InitChoice();
         canChoose = true;
+        choosedChoice = null;
     }
 }
