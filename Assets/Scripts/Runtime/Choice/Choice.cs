@@ -42,9 +42,9 @@ public class Choice : MonoBehaviour
             else
             {
                 Debug.Log("Player has chosen: " + choiceType.ToString() + " " + choiceValue);
-                int currentValue = other.gameObject.GetComponentInParent<ArrowAttack>().GetCount();
+                int currentValue = other.gameObject.GetComponentInParent<ArrowAttack>().GetArrowStack();
                 int newValue = ApplyChoice(currentValue);
-                other.gameObject.GetComponentInParent<ArrowAttack>().SetCount(newValue);
+                other.gameObject.GetComponentInParent<ArrowAttack>().SetArrowStack(newValue);
                 Debug.Log("Player's new arrow count: " + newValue);
             }
 

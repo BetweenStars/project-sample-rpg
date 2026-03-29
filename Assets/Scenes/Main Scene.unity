@@ -355,7 +355,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5353384021758435643, guid: 4c5258ae13dd34f5d9f9680b9d619bc1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 872268839}
   m_SourcePrefab: {fileID: 100100000, guid: 4c5258ae13dd34f5d9f9680b9d619bc1, type: 3}
 --- !u!1 &610885383
 GameObject:
@@ -435,7 +438,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
   m_UseReflectionProbes: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -460,6 +463,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &872268834 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5353384021758435643, guid: 4c5258ae13dd34f5d9f9680b9d619bc1, type: 3}
+  m_PrefabInstance: {fileID: 183883604}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &872268839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 872268834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 764e313a0f7d1bc4ea11fa01edbb1514, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterHP
+  maxHP: 0
+  hpText: {fileID: 0}
 --- !u!1 &910901410
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,7 +35,7 @@ public class Arrow : MonoBehaviour
     {
         if(other.CompareTag("Enemy"))
         {
-            EnemyHP enemy = other.GetComponent<EnemyHP>();
+            CharacterHP enemy = other.GetComponent<CharacterHP>();
             if(enemy != null)
             {
                 enemy.TakeDamage(damage);
