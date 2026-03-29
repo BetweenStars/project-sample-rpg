@@ -207,9 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ArrowAttack
   attackInterval: 2
-  attackDamage: 10
   arrowPrefab: {fileID: 3427107726822528509, guid: 6969d80f43e51f249b3ee04ec1672fdf, type: 3}
-  MaxArrowCount: 10
 --- !u!54 &213055043791784179
 Rigidbody:
   m_ObjectHideFlags: 0

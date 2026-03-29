@@ -11,9 +11,9 @@ public class ArrowAttack : MonoBehaviour
     [SerializeField]
     private GameObject arrowPrefab;
 
-    [SerializeField]
     private int MaxArrowCount = 9;
     private int MaxArrowStack = 99;
+
     // 전체 Arrow의 점수
     private int arrowStack = 0;
     // 발사하는 화살 개수
@@ -83,9 +83,7 @@ public class ArrowAttack : MonoBehaviour
     {
         while (true)
         {
-            Debug.Log("ArrowStack : " + arrowStack + " ArrowCount : " + arrowCount + " ArrowDamage : " + arrowDamage);
             CreateArrows();
-            SetArrowStack(arrowStack + 1);
             
             yield return new WaitForSeconds(attackInterval);
         }
@@ -111,7 +109,8 @@ public class ArrowAttack : MonoBehaviour
     public int GetArrowStack() { return arrowStack; }
     public void SetArrowStack(int stack)
     {
-        arrowStack = Mathf.Clamp(stack, 0, MaxArrowStack); 
+        
+        arrowStack = Mathf.Clamp(stack, 0, MaxArrowStack);
 
         arrowCount = (arrowStack % MaxArrowCount) + 1;
         arrowDamage = arrowStack / MaxArrowCount + 1;
